@@ -1,12 +1,26 @@
 package phony
 
-import "math/rand"
+import (
+	"math/rand"
+
+	"github.com/manveru/faker"
+)
 import "strconv"
 import "time"
 import "fmt"
 
+const nWords int = 5
+
+// TODO detect locale
+var fakerGen, _ = faker.New("en")
+
 // Default gens.
+// TODO include other methodes : https://github.com/manveru/faker/blob/master/faker.go
 var gens = map[string]func(g *Generator) string{
+	"sentence": func(g *Generator) string {
+		// NOTE parametric (flag ?) value ?
+		return fakerGen.Sentence(rand.Intn(5), false)
+	},
 	"name": func(g *Generator) string {
 		a := g.Get("name.first")
 		b := g.Get("name.last")

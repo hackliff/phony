@@ -1,7 +1,5 @@
 package phony
 
-import "github.com/manveru/faker"
-
 // Default dict.
 var dict = map[string][]string{
 	"log.levels": []string{
@@ -2442,10 +2440,8 @@ var dict = map[string][]string{
 }
 
 func init() {
-	// TODO detect locale
-	fakeGen, _ := faker.New("en")
-	for key, value := range fakeGen.Dict {
-		println(key)
+	//fakerGen, _ := faker.New("en")
+	for key, value := range fakerGen.Dict {
 		dict[key] = value
 	}
 }
