@@ -3,11 +3,16 @@ package phony
 import (
 	"math/rand"
 
+	"fmt"
+	"math/rand"
+	"strconv"
+	"time"
+
 	"github.com/manveru/faker"
+
+	"github.com/google/uuid"
+	"github.com/segmentio/ksuid"
 )
-import "strconv"
-import "time"
-import "fmt"
 
 const nWords int = 5
 
@@ -20,6 +25,9 @@ var gens = map[string]func(g *Generator) string{
 	"sentence": func(g *Generator) string {
 		// NOTE parametric (flag ?) value ?
 		return fakerGen.Sentence(rand.Intn(5), false)
+	},
+	"now.utc": func(g *Generator) string {
+		return time.Now().UTC().Format(time.RFC3339)
 	},
 	"name": func(g *Generator) string {
 		a := g.Get("name.first")
@@ -53,6 +61,12 @@ var gens = map[string]func(g *Generator) string{
 		}
 
 		return string(ret)
+	},
+	"uuid": func(g *Generator) string {
+		return uuid.New().String()
+	},
+	"ksuid": func(g *Generator) string {
+		return ksuid.New().String()
 	},
 	"ipv4": func(g *Generator) string {
 		return fmt.Sprintf("%d.%d.%d.%d", 1+rand.Intn(253), rand.Intn(255), rand.Intn(255), 1+rand.Intn(253))
