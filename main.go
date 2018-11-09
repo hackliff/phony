@@ -1,6 +1,6 @@
 package main
 
-import "github.com/hackliff/phony/pkg/phony"
+import "github.com/xav-b/phony/pkg/phony"
 import "github.com/tj/docopt"
 import "math/rand"
 import "io/ioutil"

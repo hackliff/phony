@@ -1,8 +1,6 @@
 package phony
 
 import (
-	"math/rand"
-
 	"fmt"
 	"math/rand"
 	"strconv"
